@@ -1,0 +1,11 @@
+*{
+    overflow-x: hidden;
+}
+.nav-pills li:hover {
+    background-color: blue;
+    border-radius: 10px;
+}
+
+.app{
+    background-color:  #d5dede;
+}
