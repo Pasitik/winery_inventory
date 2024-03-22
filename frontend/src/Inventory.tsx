@@ -1,5 +1,23 @@
 
-const stock = 
+export type Stock ={
+    inventory: {
+        wines: {
+            id: number,
+            batch_id: string,
+            name: string,
+            quantity: number,
+            price: number,
+            expiry_date: string
+        }[]
+    },
+    sales:{
+            name: string,
+            qty_sold: number,
+            date: string
+    }[]
+}
+
+const stock: Stock = 
     {   
         inventory:
             {
@@ -177,7 +195,7 @@ const stock =
                     date: "2024-02-26"
                 },
                 {
-                    name: "Viognier",
+                    name: "Viognier",       
                     qty_sold : 10,
                     date: "2024-02-27"
                 }
