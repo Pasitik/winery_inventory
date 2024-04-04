@@ -1,10 +1,12 @@
 import Table from 'react-bootstrap/Table';
 import stock from '../Inventory'
+import "../index.css"
 
 function ProductsTable() {
   return (
+    <div className='p-table'>
     <Table responsive>
-      <thead>
+      <thead style={{position: 'sticky', top: 0}}>
         <tr>
           <th className='text-center text-white bg-dark'>BATCH</th>
           <th className='text-center text-white bg-dark'>WINE</th>
@@ -27,6 +29,7 @@ function ProductsTable() {
           ))}
       </tbody>
     </Table>
+    </div>
   );
 }
 

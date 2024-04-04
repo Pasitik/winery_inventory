@@ -10,7 +10,7 @@ const Nav = () => {
         <div className='row'>
             <div className='bg-dark min-vh-100'>
                 <a className='text-decoration-none text-white d-flex d-none d-sm-inline align-itemcenter'>
-                    <span className='ms-1 fs-4'>Brand</span>
+                    <span className='ms-1 fs-4'>Wonlate Winery</span>
                 </a>
                 <hr className='text-secondary'/>
                 <ul className='nav nav-pills flex-column'>

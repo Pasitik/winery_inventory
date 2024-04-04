@@ -9,3 +9,8 @@
 .app{
     background-color:  #d5dede;
 }
+
+.p-table{
+    height: 550px;
+    overflow-y: auto;
+}
