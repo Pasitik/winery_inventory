@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveItem } from '../features/inventory/inventorySlice';
+import { saveItem } from '../features/salesSlice';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -13,7 +13,7 @@ type Item = {
   expirery: string
 }
 
-const AddWineForm = ({ clicked, setClicked }) => {
+const SellWineForm = ({ clicked, setClicked }) => {
 
   const dispatch = useDispatch()
 
@@ -92,4 +92,4 @@ const AddWineForm = ({ clicked, setClicked }) => {
   );
 }
 
-export default AddWineForm;
+export default SellWineForm;

@@ -1,11 +1,15 @@
 import React from 'react'
-import AddWine from '../components/AddWine'
+import SellWine from '../components/SellWine'
+import SalesTable from '../components/SalesTable'
 
 const Sales = () => {
   return (
     <div>
       <div className='my-5'>
-        <AddWine />
+        <SellWine />
+      </div>
+      <div className='container'>
+        <SalesTable />
       </div>
     </div>
   )

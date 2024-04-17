@@ -3,9 +3,9 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import AddWineForm from './AddWineForm';
+import SellWineForm from './SellWineForm';
 
-const AddWine = () => {
+const SellWine = () => {
   const [show, setShow] = useState(false);
   const [clicked, setClicked] = useState<boolean>(false);
 
@@ -16,22 +16,22 @@ const AddWine = () => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add Wine
+        Sell Wine
       </Button>
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Wine</Modal.Title>
+          <Modal.Title>Sell Wine</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddWineForm clicked={clicked} setClicked={setClicked}/>
+          <SellWineForm clicked={clicked} setClicked={setClicked}/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <Button variant="primary" onClick={handleSave}>
-            Save Changes
+            Sell Wine
           </Button>
         </Modal.Footer>
       </Modal>
@@ -39,4 +39,4 @@ const AddWine = () => {
   );
 }
 
-export default AddWine;
+export default SellWine;

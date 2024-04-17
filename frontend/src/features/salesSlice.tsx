@@ -22,7 +22,7 @@ type ApiPost = {
 
 
 type ResponseState = {
-  inventory: ApiResponse[];
+  sales: ApiResponse[];
   loading: boolean;
   error: string | null;
 }
@@ -37,12 +37,12 @@ const initialState: ResponseState = {
     // sales:
     //   // Sales data here...
     //   stock.sales
-    inventory: [],
+    sales: [],
     loading: false,
     error: ''
   };
 
-export const fetchItems = createAsyncThunk('inventory/fetchItems',
+export const fetchItems = createAsyncThunk('sales/fetchItems',
   async () => {
       const response = await axios.get('');
       console.log(response.data);
@@ -50,7 +50,7 @@ export const fetchItems = createAsyncThunk('inventory/fetchItems',
   }
 )
 
-export const saveItem = createAsyncThunk('inventory/saveItem',
+export const saveItem = createAsyncThunk('sales/saveItem',
   async (item :ApiPost ) => {
     const response = await axios.post('', item);
     return response.data; // Return the data from the API response
@@ -58,8 +58,8 @@ export const saveItem = createAsyncThunk('inventory/saveItem',
   }
 )
   
-export const inventorySlice = createSlice({
-    name: 'inventory',
+export const salesSlice = createSlice({
+    name: 'sales',
     initialState,
     reducers: {
            // addWineToInventory: (state, action) => {
@@ -74,7 +74,7 @@ export const inventorySlice = createSlice({
           .addCase(fetchItems.fulfilled, (state, action) => {
             state.loading = false;
             state.error = '';
-            state.inventory = action.payload;
+            state.sales = action.payload;
           })
           .addCase(fetchItems.rejected, (state, action) => {  
             state.loading = false;
@@ -85,4 +85,4 @@ export const inventorySlice = createSlice({
 
 //export const { addWineToInventory } = inventorySlice.actions
 
-export default inventorySlice.reducer;
+export default salesSlice.reducer;
