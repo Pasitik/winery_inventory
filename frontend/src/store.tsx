@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import inventoryReducer from './features/inventory/inventorySlice'; 
 import salesReducer from './features/salesSlice'; 
+import urgentAttentionReducer from './features/urgentSlice'
 
 export const store = configureStore({
     reducer: {
         inventory: inventoryReducer,
-        sales: salesReducer
+        sales: salesReducer,
+        urgentAttention: urgentAttentionReducer
     },
 })
 

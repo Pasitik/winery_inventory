@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
+import {ThunkDispatch} from "@reduxjs/toolkit";
 import { saveItem } from '../features/inventory/inventorySlice';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -13,9 +14,9 @@ type Item = {
   expirery: string
 }
 
-const AddWineForm = ({ clicked, setClicked }) => {
+const AddWineForm = ({ clicked, setClicked }: {clicked:boolean, setClicked: (value: boolean) => void}) => {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>()
 
   const [item, setItem] = useState<Item>({
     //id: NaN,
@@ -74,18 +75,6 @@ const AddWineForm = ({ clicked, setClicked }) => {
           <Form.Label>Price</Form.Label>
           <Form.Control type="number" placeholder="Price" name="price" value={item.price} onChange={handleChange}/>
         </Form.Group>
-      </Row>
-
-
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>State</Form.Label>
-          <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
-          </Form.Select>
-        </Form.Group>
-
       </Row>
 
     </Form>

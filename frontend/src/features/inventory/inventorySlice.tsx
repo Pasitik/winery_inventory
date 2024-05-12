@@ -1,23 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
-import stock from '../../Inventory'
-import { RootState } from '../../store';
-import { PayloadAction } from '@reduxjs/toolkit';
 
-
-type ApiResponse = {
+export type ApiResponse = {
   id: number;
   name: string;
   quantity: number;
   price: number;
-  expirery: string; 
+  expirery: string;
+  sales:{
+    id:number;
+    product_id: number;
+    quantity: number;
+    sale_date: string
+  }[]
 }
 
 type ApiPost = {
   name: string;
   quantity: number;
   price: number;
-  expirery: string; 
+  expirery: string;
 }
 
 
@@ -55,6 +57,19 @@ export const saveItem = createAsyncThunk('inventory/saveItem',
     const response = await axios.post('', item);
     return response.data; // Return the data from the API response
 
+  }
+)
+
+export const deleteItem = createAsyncThunk('inventory/deleteItem',
+  async (item: ApiResponse) => {
+    const {id} = item
+    try{
+      const response = await axios.delete(``);
+      return response.data; // Return the data from the API response
+    }
+    catch(error){
+      console.log("Failed")
+    }
   }
 )
   

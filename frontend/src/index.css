@@ -14,3 +14,13 @@
     height: 550px;
     overflow-y: auto;
 }
+
+th {
+    position: sticky;
+    top: 0; /* Don't forget this, required for the stickiness */
+  }
+
+.delete:hover{
+    cursor: pointer;
+    transform: scale(1.5)
+}

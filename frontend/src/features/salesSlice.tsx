@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
-import stock from '../../Inventory'
-import { RootState } from '../../store';
-import { PayloadAction } from '@reduxjs/toolkit';
+
 
 
 type ApiResponse = {
@@ -10,14 +8,12 @@ type ApiResponse = {
   name: string;
   quantity: number;
   price: number;
-  expirery: string; 
+  sale_date: string; 
 }
 
 type ApiPost = {
-  name: string;
+  product_id: number;
   quantity: number;
-  price: number;
-  expirery: string; 
 }
 
 

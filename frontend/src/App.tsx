@@ -6,6 +6,7 @@ import Expenses from './screens/Expenses';
 import Home from './screens/Home';
 import Products from './screens/Products';
 import Sales from './screens/Sales';
+import Urgent from './components/Urgent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js'
 import './index.css'
@@ -31,6 +32,7 @@ function App() {
                 <Route path='/expenses' element={ <Expenses/> } />
                 <Route path='/Products' element={ <Products/> } />
                 <Route path='/sales' element={ <Sales/> } />
+                <Route path="/urgent" element={<Urgent />} />
               </Routes>
             </Container>
           </main>

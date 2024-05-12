@@ -1,8 +1,7 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 import AddWineForm from './AddWineForm';
 
 const AddWine = () => {
@@ -12,6 +11,15 @@ const AddWine = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleSave = () => setClicked(true);
+
+  useEffect(()=>{
+    const closeModal = () => {
+      if(clicked){
+        setShow(false)
+      }
+    }
+    closeModal()
+  },[clicked, setShow])
 
   return (
     <>
