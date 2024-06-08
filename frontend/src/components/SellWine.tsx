@@ -24,12 +24,12 @@ const SellWine = () => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Sell Wine
+        Sell Item
       </Button>
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Sell Wine</Modal.Title>
+          <Modal.Title>Sell Item</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <SellWineForm clicked={clicked} setClicked={setClicked}/>
@@ -39,7 +39,7 @@ const SellWine = () => {
             Close
           </Button>
           <Button variant="primary" onClick={handleSave}>
-            Sell Wine
+            Sell Item
           </Button>
         </Modal.Footer>
       </Modal>

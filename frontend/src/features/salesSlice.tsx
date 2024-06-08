@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, isRejectedWithValue } from '@reduxjs/toolkit'
+import { setRefresh } from './refreshSlice';
 import axios from 'axios';
 
 
@@ -40,17 +41,23 @@ const initialState: ResponseState = {
 
 export const fetchItems = createAsyncThunk('sales/fetchItems',
   async () => {
-      const response = await axios.get('');
+      const response = await axios.get(import.meta.env.GET_ENDPOINT);
       console.log(response.data);
       return response.data; // Return the data from the API response
   }
 )
 
 export const saveItem = createAsyncThunk('sales/saveItem',
-  async (item :ApiPost ) => {
-    const response = await axios.post('', item);
-    return response.data; // Return the data from the API response
-
+  async (item :ApiPost, {dispatch} ) => {
+    try{
+      const response = await axios.post(import.meta.env.POST_ENDPOINT, item);
+      dispatch(setRefresh(true));
+      return response.data; // Return the data from the API response  
+    }
+    catch(error){
+      console.log("failed")
+      
+    }
   }
 )
   

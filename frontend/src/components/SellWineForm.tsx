@@ -43,7 +43,7 @@ const SellWineForm = ({ clicked, setClicked }: {clicked:boolean, setClicked: (va
 
         <Form.Group as={Col} controlId="formGridQuantity">
           <Form.Label>Quantity</Form.Label>
-          <Form.Control type="number" placeholder="Batch" name="quantity" value={item.quantity} onChange={handleChange}/>
+          <Form.Control type="number" placeholder="Quantity" name="quantity" value={item.quantity} onChange={handleChange}/>
         </Form.Group>
       </Row>
     </Form>

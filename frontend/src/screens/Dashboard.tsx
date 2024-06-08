@@ -12,6 +12,8 @@ import { faCircleExclamation, faCircleDollarToSlot, faHandHoldingDollar, faBell,
 const Dashboard = () => {
     const [totalSales, setTotalSales] = useState<number | null>(null);
     const [todaySales, setTodaySales] = useState<number | null>(null);
+    const [todayProfiit, setTodayProfit] = useState<number | null>(null);
+
 
     const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
     const items = useSelector((state: RootState) => state.inventory)
@@ -39,6 +41,7 @@ const Dashboard = () => {
     setTotalSales(() => total_sales())
    },[items.inventory])
 
+
    useEffect(() => {
     const today_sales = () => {
         const today = new Date(); // Get today's date
@@ -61,8 +64,30 @@ const Dashboard = () => {
         return sum;
     };
 
+    const today_profit = () => {
+        const today = new Date(); // Get today's date
+        const todayString = today.toISOString().split('T')[0]; // Convert today's date to string in format 'YYYY-MM-DD'
+
+        let sum = 0;
+        items.inventory.forEach((item) => {
+            item.sales.forEach((sale) => {
+                // Extract the date part from the sale date string
+                const saleDateString = sale.sale_date.split('T')[0];
+
+                // Check if the sale occurred today
+                if (saleDateString === todayString) {
+                    console.log(item.unit_cost)
+                    let cost_figure = sale.quantity * item.unit_cost;
+                    sum += cost_figure;
+                }
+            });
+        });
+        console.log("Today's Total cost:", sum);
+        return today_sales() - sum;
+    }
     //const todaySales = today_sales(); // Calculate today's sales
     setTodaySales(() => today_sales())
+    setTodayProfit(() => today_profit())
 
 }, [items.inventory]);
 
@@ -151,6 +176,24 @@ const Dashboard = () => {
                     <div>
                         <p>
                             <strong className='fs-2'>{todaySales}</strong>
+                        </p>
+                    </div>
+                    <div>
+                        <p> <FontAwesomeIcon icon={faArrowUp} style={{color:"#77E711 "}}/> 30% <span className='text-secondary'>since last month</span></p>
+                    </div>
+                    </div>
+                </Card>
+            </Col>
+            <Col>
+                <Card className='bg-white mr-5 my-5'>
+                    <div className='my-3 mx-3'>
+                    <div className='position-relative'>
+                        <p className='text-secondary'>TODAY'S Profits</p>
+                        <FontAwesomeIcon icon={faCircleDollarToSlot} style={{color:"#E79060"}} size="2x" className="position-absolute top-0 end-0"/>
+                    </div>
+                    <div>
+                        <p>
+                            <strong className='fs-2'>{todayProfiit}</strong>
                         </p>
                     </div>
                     <div>

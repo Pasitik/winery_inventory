@@ -24,12 +24,12 @@ const AddWine = () => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add Wine
+        Add Item
       </Button>
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Wine</Modal.Title>
+          <Modal.Title>Add Item</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <AddWineForm clicked={clicked} setClicked={setClicked}/>

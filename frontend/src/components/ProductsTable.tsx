@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {ThunkDispatch} from "@reduxjs/toolkit";
 import { fetchItems } from '../features/inventory/inventorySlice';
+import { setRefresh } from '../features/refreshSlice';
 import DeleteModal from './DeleteModal'
 import { RootState } from '../store';
 import Table from 'react-bootstrap/Table';
@@ -15,15 +16,22 @@ function ProductsTable() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   //const {inventory, loading, error} = useSelector((state: RootState) => state.inventory)
   const items = useSelector((state: RootState) => state.inventory)
+  const refresh = useSelector((state: RootState) => state.refresh.value);
+
 
   // Fetch items on component mount
   useEffect(() => {
     dispatch(fetchItems());
-  }, [dispatch]);
+
+    return () => {
+      dispatch(setRefresh(false));
+    };
+
+  }, [dispatch, refresh]);
 
   return (
     <div className='p-table'>
-    <div>
+    <div> 
         <Col className='mb-3'>
           <Form.Control type="text" placeholder="Search"
             onChange={(e)=>setSearch(e.target.value)}/>
@@ -33,7 +41,7 @@ function ProductsTable() {
       <thead style={{position: 'sticky', top: 0}}>
         <tr>
           <th className='text-center text-white bg-dark'>BAT</th>
-          <th className='text-center text-white bg-dark'>WINE</th>
+          <th className='text-center text-white bg-dark'>ITEM</th>
           <th className='text-center text-white bg-dark'>QUANTITY</th>
           <th className='text-center text-white bg-dark'>PRICE</th>
           <th className='text-center text-white bg-dark'>EXPIRY</th>

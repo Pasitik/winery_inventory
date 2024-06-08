@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchItems } from '../features/salesSlice';
 import { RootState } from '../store';
+import { setRefresh } from '../features/refreshSlice';
 import Table from 'react-bootstrap/Table';
 import {ThunkDispatch} from "@reduxjs/toolkit";
 import "../index.css"
@@ -10,11 +11,18 @@ function SalesTable() {
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   //const {inventory, loading, error} = useSelector((state: RootState) => state.inventory)
   const items = useSelector((state: RootState) => state.inventory)
+  const refresh = useSelector((state: RootState) => state.refresh.value);
+
 
   // Fetch items on component mount
   useEffect(() => {
     dispatch(fetchItems());
-  }, [dispatch]);
+
+    return () => {
+      dispatch(setRefresh(false));
+    };
+
+  }, [dispatch, refresh]);
 
 
   return (
@@ -23,7 +31,7 @@ function SalesTable() {
       <thead style={{position: 'sticky', top: 0}}>
         <tr>
           <th className='text-center text-white bg-dark'>ID</th>
-          <th className='text-center text-white bg-dark'>WINE</th>
+          <th className='text-center text-white bg-dark'>ITEM</th>
           <th className='text-center text-white bg-dark'>QUANTITY</th>
           <th className='text-center text-white bg-dark'>PRICE</th>
           <th className='text-center text-white bg-dark'>DATE</th>

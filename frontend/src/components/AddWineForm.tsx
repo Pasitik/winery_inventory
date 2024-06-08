@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {ThunkDispatch} from "@reduxjs/toolkit";
 import { saveItem } from '../features/inventory/inventorySlice';
 import Col from 'react-bootstrap/Col';
@@ -11,6 +11,7 @@ type Item = {
   name: string,
   quantity: number,
   price: number,
+  unit_cost: number,
   expirery: string
 }
 
@@ -23,6 +24,7 @@ const AddWineForm = ({ clicked, setClicked }: {clicked:boolean, setClicked: (val
     name: '',
     quantity: 0,
     price: 0,
+    unit_cost: 0,
     expirery: ''
   })
 
@@ -48,20 +50,20 @@ const AddWineForm = ({ clicked, setClicked }: {clicked:boolean, setClicked: (val
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridQuantity">
-          <Form.Label>Batch Id</Form.Label>
-          <Form.Control type="number" placeholder="Batch" name="" value='' disabled />
+          <Form.Label>Unit Purchase Price</Form.Label>
+          <Form.Control type="number" placeholder="Unit Purchase Price" name="unit_cost" value={item.unit_cost} onChange={handleChange} required/>
         </Form.Group>
       </Row>
 
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridProduct">
           <Form.Label>Product Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter product" name="name" value={item.name}  onChange={handleChange} />
+          <Form.Control type="text" placeholder="Enter product" name="name" value={item.name}  onChange={handleChange} required/>
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridQuantity">
           <Form.Label>Quantity</Form.Label>
-          <Form.Control type="number" placeholder="Quantity" name="quantity" value={item.quantity} onChange={handleChange} />
+          <Form.Control type="number" placeholder="Quantity" name="quantity" value={item.quantity} onChange={handleChange} required/>
         </Form.Group>
       </Row>
 
@@ -73,7 +75,7 @@ const AddWineForm = ({ clicked, setClicked }: {clicked:boolean, setClicked: (val
 
         <Form.Group as={Col} controlId="formGridQuantity">
           <Form.Label>Price</Form.Label>
-          <Form.Control type="number" placeholder="Price" name="price" value={item.price} onChange={handleChange}/>
+          <Form.Control type="number" placeholder="Price" name="price" value={item.price} onChange={handleChange} required/>
         </Form.Group>
       </Row>
 
