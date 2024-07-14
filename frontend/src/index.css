@@ -12,7 +12,10 @@
 
 .p-table{
     height: 550px;
-    overflow-y: auto;
+}
+
+.t-body{
+    height: 550;
 }
 
 th {

@@ -4,6 +4,7 @@ import {ThunkDispatch} from "@reduxjs/toolkit";
 import { fetchItems } from '../features/inventory/inventorySlice';
 import { setRefresh } from '../features/refreshSlice';
 import DeleteModal from './DeleteModal'
+import EditProduct from './EditProduct';
 import { RootState } from '../store';
 import Table from 'react-bootstrap/Table';
 import Col from 'react-bootstrap/Col';
@@ -46,6 +47,7 @@ function ProductsTable() {
           <th className='text-center text-white bg-dark'>PRICE</th>
           <th className='text-center text-white bg-dark'>EXPIRY</th>
           <th className='text-center text-white bg-dark'>AVAILABLE</th>
+          <th className='text-center text-white bg-dark'>Edit</th>
           <th className='text-center text-white bg-dark'>Delete</th>
         </tr>
       </thead>
@@ -60,6 +62,9 @@ function ProductsTable() {
               <td className='text-center'>{item.price}</td>
               <td className='text-center'>{item.expirery}</td>
               <td className='text-center'>{item.quantity > 0 ?  "Yes" : "No"}</td>
+              <td className='text-center'>
+                <EditProduct item={item}/>
+              </td>
               <td className='text-center'>
                 <DeleteModal item={item}/>
               </td>

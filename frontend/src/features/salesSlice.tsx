@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 
-type ApiResponse = {
+type SaleApiResponse = {
   id: number;
   name: string;
   quantity: number;
@@ -15,11 +15,12 @@ type ApiResponse = {
 type ApiPost = {
   product_id: number;
   quantity: number;
+  price: number
 }
 
 
 type ResponseState = {
-  sales: ApiResponse[];
+  sales: SaleApiResponse[];
   loading: boolean;
   error: string | null;
 }
@@ -50,7 +51,7 @@ export const fetchItems = createAsyncThunk('sales/fetchItems',
 export const saveItem = createAsyncThunk('sales/saveItem',
   async (item :ApiPost, {dispatch} ) => {
     try{
-      const response = await axios.post(import.meta.env.POST_ENDPOINT, item);
+      const response = await axios.post(import.meta.env.POST_SALE, item);
       dispatch(setRefresh(true));
       return response.data; // Return the data from the API response  
     }

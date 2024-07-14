@@ -13,6 +13,7 @@ export type ApiResponse = {
     id:number;
     product_id: number;
     quantity: number;
+    price: number;
     sale_date: string
   }[]
 }
@@ -68,6 +69,23 @@ export const saveItem = createAsyncThunk('inventory/saveItem',
     }
   }
 )
+
+export const editItem = createAsyncThunk('inventory/editItem',
+  async (item: ApiResponse, { dispatch }) => {
+    // const { id, price } = item; // Extract the ID and price from the item
+    // const updatedData = { price }; // Create an object with only the price field
+    const {id} = item
+
+    try {
+      const response = await axios.put(import.meta.env.PUT_ENDPOINT+id+"/", item);
+      dispatch(setRefresh(true));
+      return response.data; // Return the data from the API response
+    } catch (error) {
+      console.error("Failed:", error);
+      throw error; // Rethrow the error to handle it elsewhere
+    }
+  }
+);
 
 export const deleteItem = createAsyncThunk('inventory/deleteItem',
   async (item: ApiResponse, {dispatch}) => {
